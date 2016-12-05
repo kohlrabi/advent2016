@@ -16,21 +16,21 @@ unordered_map<char, function<int(int)>> moves =
 	{ 'R', [](int num)->int{ return 1 * (num%3 != 0); } },
 };
 
-unordered_map<int, unordered_map<char, int>> moves2 = 
+vector<unordered_map<char, int>> moves2 = 
 {
-	{ 1, { {'D', 3} } },
-	{ 2, { {'D', 6}, {'R', 3} } }, 
-	{ 3, { {'D', 7}, {'R', 4}, {'U', 1}, {'L', 2} } },
-	{ 4, { {'D', 8}, {'L', 3} } },
-	{ 5, { {'R', 6} } },
-	{ 6, { {'D', 10}, {'U', 2}, {'R', 7}, {'L', 5} } },
-	{ 7, { {'D', 11}, {'U', 3}, {'R', 8}, {'L', 6} } },
-	{ 8, { {'D', 12}, {'U', 4}, {'R', 9}, {'L', 7} } },
-	{ 9, { {'L', 8} } },
-	{ 10, { {'U', 6}, {'R', 11} } }, 
-	{ 11, { {'D', 13}, {'R', 12}, {'U', 7}, {'L', 10} } },
-	{ 12, { {'U', 8}, {'L', 11} } },
-	{ 13, { {'U', 11} } }
+	{ {'D', 3} },
+	{ {'D', 6}, {'R', 3} }, 
+	{ {'D', 7}, {'R', 4}, {'U', 1}, {'L', 2} },
+	{ {'D', 8}, {'L', 3} },
+	{ {'R', 6} },
+	{ {'D', 10}, {'U', 2}, {'R', 7}, {'L', 5} },
+	{ {'D', 11}, {'U', 3}, {'R', 8}, {'L', 6} },
+	{ {'D', 12}, {'U', 4}, {'R', 9}, {'L', 7} },
+	{ {'L', 8} },
+	{ {'U', 6}, {'R', 11} }, 
+	{ {'D', 13}, {'R', 12}, {'U', 7}, {'L', 10} },
+	{ {'U', 8}, {'L', 11} },
+	{ {'U', 11} }
 };	
 
 string part1(vector<string> const &s)
@@ -55,9 +55,9 @@ string part2(vector<string> const &s)
 	
 	for(auto const &l : s) {
 		for(auto const &c : l) {
-			size_t i = moves2[num].count(c);
+			size_t i = moves2[num-1].count(c);
 			if(i != 0)
-				num = moves2[num][c];
+				num = moves2[num-1][c];
 		}
 		keys.push_back(num);
 	}
