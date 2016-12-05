@@ -6,32 +6,37 @@
 
 using namespace std;
 
+int move(char const &c, int num) 
+{
+	switch(c) {
+		case 'U':
+			if(num > 3)
+				num -= 3;
+			break;
+		case 'D':
+			if(num < 7)
+				num += 3;
+			break;
+		case 'L':
+			if(num%3 != 1)
+				num -= 1;
+			break;
+		case 'R':
+			if(num%3 != 0)
+				num += 1;
+			break;
+	}
+	return num;
+}
+
 string part1(vector<string> const &s)
 {
 	string ret = "";
 	int num = 5;
 	
 	for(auto &i : s) {
-		for(auto &c : i) {
-			switch(c) {
-				case 'U':
-					if(num > 3)
-						num -= 3;
-					break;
-				case 'D':
-					if(num < 7)
-						num += 3;
-					break;
-				case 'L':
-					if(num%3 != 1)
-						num -= 1;
-					break;
-				case 'R':
-					if(num%3 != 0)
-						num += 1;
-					break;
-			}
-		}
+		for(auto &c : i)
+			num = move(c, num);
 		ret += to_string(num);
 	}
 	return ret;
