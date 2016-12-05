@@ -16,6 +16,17 @@ unordered_map<char, function<int(int)>> moves =
 	{ 'R', [](int num)->int{ return 1 * (num%3 != 0); } },
 };
 
+vector<vector<int>> grid =
+{
+	{ { 0, 0,  0,  0,  0, 0, 0 } },
+	{ { 0, 0,  0,  1,  0, 0, 0 } },
+	{ { 0, 0,  2,  3,  4, 0, 0 } },
+	{ { 0, 5,  6,  7,  8, 9, 0 } },
+	{ { 0, 0, 10, 11, 12, 0, 0 } },
+	{ { 0, 0,  0, 13,  0, 0, 0 } },
+	{ { 0, 0,  0,  0,  0, 0, 0 } }
+};	
+
 vector<unordered_map<char, int>> moves2 = 
 {
 	{ {'D', 3} },
@@ -67,6 +78,41 @@ string part2(vector<string> const &s)
 	return ss.str();
 }
 
+string part2grid(vector<string> const &s)
+{
+	stringstream ss;
+	vector<int> keys;
+	pair<int, int> pos = { 4, 2 };
+	
+	for(auto const &l : s) {
+		for(auto const &c : l) {
+			pair<int, int> pos2 = pos;
+			switch(c) {
+				case 'U':
+					pos2.first -= 1;
+					break;
+				case 'D':
+					pos2.first += 1;
+					break;
+				case 'L':
+					pos2.second -= 1;
+					break;
+				case 'R':
+					pos2.second += 1;
+					break;
+			}
+			if(grid[pos2.first][pos2.second] != 0)
+				pos = pos2;
+		}
+		keys.push_back(grid[pos.first][pos.second]);
+	}
+
+	for(auto &key : keys)
+		ss << hex << uppercase << key;
+	
+	return ss.str();
+}
+
 int main(int argc, char **argv)
 {
 	vector<string> in;
@@ -76,5 +122,6 @@ int main(int argc, char **argv)
 
 	cout << "part 1: " << part1(in) << endl;
 	cout << "part 2: " << part2(in) << endl;
+	cout << "part 2 (grid): " << part2grid(in) << endl;
 	return 0;
 }
