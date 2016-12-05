@@ -28,8 +28,26 @@ def part1(s):
 
     return ret
 
+def rot(s, n=0):
+    n %= 26
+    r = []
+    for l in s:
+        b = [ord(c) for c in l]
+        b = [bb + n for bb in b]
+        b = [bb - 26 * (bb > 122) for bb in b]
+        r.append("".join([chr(i) for i in b]))
+    return r
+
+def part2(s):
+
+    for l in s:
+        sl = l.split('-')
+        idd = int(sl[-1].split('[')[0])
+        r = rot(sl[:-1], idd)
+        r = " ".join(r)
+        if r == "northpole object storage":
+            return idd
+    return 0
+
 print "part 1:", part1(s)
-
-
-
-
+print "part 2:", part2(s)
