@@ -3,27 +3,18 @@
 #include <complex>
 #include <cmath>
 #include <vector>
+#include <unordered_map>
+#include <functional>
 
 using namespace std;
 
-int move(char const &c, int num) 
+unordered_map<char, function<int(int)>> moves = 
 {
-	switch(c) {
-		case 'U':
-			num += -3 * (num > 3);
-			break;
-		case 'D':
-			num += 3 * (num < 7);
-			break;
-		case 'L':
-			num += -1 * (num%3 != 1);
-			break;
-		case 'R':
-			num += 1 * (num%3 != 0);
-			break;
-	}
-	return num;
-}
+	{ 'U', [](int num)->int{ return -3 * (num > 3); } },
+	{ 'D', [](int num)->int{ return 3 * (num < 7); } },
+	{ 'L', [](int num)->int{ return -1 * (num%3 != 1); } },
+	{ 'R', [](int num)->int{ return 1 * (num%3 != 0); } },
+};
 
 string part1(vector<string> const &s)
 {
@@ -31,8 +22,8 @@ string part1(vector<string> const &s)
 	int num = 5;
 	
 	for(auto &i : s) {
-		for(auto &c : i)
-			num = move(c, num);
+		for(auto const &c : i)
+			num += moves[c](num);
 		ret += to_string(num);
 	}
 	return ret;
