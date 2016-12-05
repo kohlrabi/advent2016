@@ -10,20 +10,16 @@ int move(char const &c, int num)
 {
 	switch(c) {
 		case 'U':
-			if(num > 3)
-				num -= 3;
+			num += -3 * (num > 3);
 			break;
 		case 'D':
-			if(num < 7)
-				num += 3;
+			num += 3 * (num < 7);
 			break;
 		case 'L':
-			if(num%3 != 1)
-				num -= 1;
+			num += -1 * (num%3 != 1);
 			break;
 		case 'R':
-			if(num%3 != 0)
-				num += 1;
+			num += 1 * (num%3 != 0);
 			break;
 	}
 	return num;
