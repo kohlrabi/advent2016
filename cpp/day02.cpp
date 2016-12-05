@@ -6,16 +6,13 @@
 
 using namespace std;
 
-string part1()
+string part1(vector<string> const &s)
 {
-	string s, ret = "";
+	string ret = "";
 	int num = 5;
 	
-	while(true) {
-		cin >> s;
-		if(s[0] == ';')
-			break;
-		for(auto &c : s) {
+	for(auto &i : s) {
+		for(auto &c : i) {
 			switch(c) {
 				case 'U':
 					if(num > 3)
@@ -43,6 +40,11 @@ string part1()
 
 int main(int argc, char **argv)
 {
-	cout << part1() << endl;
+	vector<string> in;
+	string s;
+	while(getline(cin, s, '\n'))
+		in.push_back(s);
+
+	cout << "part 1: " << part1(in) << endl;
 	return 0;
 }

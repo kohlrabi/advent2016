@@ -2,7 +2,7 @@
 
 import fileinput
 
-s = [l for l in fileinput.input()][:-1]
+s = [l for l in fileinput.input()]
 
 def part1(s):
     num = 5
