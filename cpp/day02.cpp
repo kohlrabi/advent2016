@@ -54,8 +54,7 @@ string part2(vector<string> const &s)
 	
 	for(auto const &l : s) {
 		for(auto const &c : l) {
-			size_t i = moves2[num-1].count(c);
-			if(i != 0)
+			if(moves2[num-1].find(c) != moves2[num-1].end())
 				num = moves2[num-1][c];
 		}
 		keys.push_back(num);
