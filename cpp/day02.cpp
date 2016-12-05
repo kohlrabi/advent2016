@@ -49,8 +49,7 @@ string part1(vector<string> const &s)
 string part2(vector<string> const &s)
 {
 	vector<int> keys;
-	string r = "";
-	char buf[3];
+	stringstream ss;
 	int num = 5;
 	
 	for(auto const &l : s) {
@@ -62,12 +61,10 @@ string part2(vector<string> const &s)
 		keys.push_back(num);
 	}
 	
-	for(auto &key : keys) {
-		sprintf(buf, "%X", key);
-		r += buf;
-	}
+	for(auto &key : keys)
+		ss << hex << uppercase << key;
 
-	return r;
+	return ss.str();
 }
 
 int main(int argc, char **argv)
