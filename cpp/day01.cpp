@@ -6,13 +6,15 @@
 
 using namespace std;
 
-int part1()
+int part1(string const &in)
 {
+	stringstream ss;
+	ss.str(in);
 	string s;
 	complex<double> loc=0, dir=1;
 	
 	while(true) {
-		cin >> s;
+		getline(ss, s, ' ');
 		if(s[0] == 'L')
 			dir *= 1if;
 		else
@@ -24,15 +26,17 @@ int part1()
 	return abs(loc.real())+abs(loc.imag());
 }
 
-int part2()
+int part2(string const &in)
 {
+	stringstream ss;
+	ss.str(in);
 	string s;
 	complex<double> loc=0, dir=1;
 	vector<complex<double>> locs;
 	
 	locs.push_back(loc);
 	while(true) {
-		cin >> s;
+		getline(ss, s, ' ');
 		if(s[0] == 'L')
 			dir *= 1if;
 		else
@@ -51,6 +55,9 @@ int part2()
 
 int main(int argc, char **argv)
 {
-	cout << part2() << endl;
+	string s;
+	getline(cin, s, '\n');
+	cout << "part 1: " << part1(s) << endl;
+	cout << "part 2: " << part2(s) << endl;
 	return 0;
 }
