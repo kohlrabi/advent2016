@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-inp = "abbhdwsy"
 
 def part1(inp):
     import hashlib
@@ -31,5 +30,8 @@ def part2(inp):
 
 
 if __name__ == '__main__':
+    import fileinput
+    inp = [i for i in fileinput.input()][0][:-1]
+
     print "part1:", part1(inp)
     print "part2:", part2(inp)
