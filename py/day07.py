@@ -17,7 +17,8 @@ def part1(s):
 
         if any(c[1::2]):
             continue
-        elif any(c[::2]):
+        
+        if any(c[::2]):
             n += 1
 
     return n
