@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 def checkline(l):
-    for c in zip(l[0:-3], l[1:-2], l[2:-1], l[3:]):
-        if c[0] == c[3] and c[1] == c[2] and c[0] != c[1]:
+    for i in range(len(l)-3):
+        if l[i] == l[i+3] and l[i+1] == l[i+2] and l[i] != l[i+1]:
             return True
     return False
 
