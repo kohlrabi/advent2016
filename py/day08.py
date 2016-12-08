@@ -42,13 +42,24 @@ def part1(s):
         if "column" in l:
             sc.rot_col(A, B)
 
-    return sc.sum()
+    return sc
 
+def part2(s):
+    d = part1(s).d
+
+    s = "\n"
+    for i in d:
+        s += "".join(['#' if x else ' ' for x in i])
+        s += "\n"
+
+    return s[:-1]
+    
 
 if __name__ == '__main__':
     import fileinput
 
     s = [x for x in fileinput.input()]
 
-    print "part1:", part1(s)
+    print "part1:", part1(s).sum()
+    print "part2:", part2(s)
 
